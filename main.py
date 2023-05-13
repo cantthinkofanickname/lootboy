@@ -21,6 +21,8 @@ import glob
 import shutil
 from config import username, password, keys, vpnl, vpnp
 from webdriver_manager.chrome import ChromeDriverManager
+from user_agent import generate_user_agent, generate_navigator
+
 
 username = username
 password = password
@@ -131,6 +133,7 @@ def weekly(driver):
 
 
 def main():
+    ua = generate_user_agent(os=('win'))
     k = len(username)
     book = openpyxl.Workbook()
     sheet = book.active
@@ -147,6 +150,9 @@ def main():
             login = username[i]
             passw = password[0]
             options = Options()
+            prefs = {"credentials_enable_service": False, "profile.password_manager_enabled": False}
+            options.add_experimental_option("prefs", prefs)
+            options.add_argument(f"user-agent={ua}")
             options.add_argument("--disable-infobars")
             options.add_argument('--disable-notifications')
             options.add_argument("--mute-audio")
