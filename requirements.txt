@@ -28,7 +28,7 @@ pyOpenSSL==23.0.0
 pytest==7.2.1
 simplejson==3.18.3
 toml==0.10.2
-tornado==6.2
+tornado==6.4.2
 trustme==0.9.0
 typing_extensions==4.4.0
 
